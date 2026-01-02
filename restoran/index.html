@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oshxona Restorani - Ta'mli Taomlar</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header qismi -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Oshxona</h1>
+                <span>Restoran</span>
+            </div>
+            
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Bosh Sahifa</a></li>
+                    <li><a href="#menu" class="nav-link">Menyu</a></li>
+                    <li><a href="#about" class="nav-link">Biz Haqimizda</a></li>
+                    <li><a href="#reservation" class="nav-link">Bron Qilish</a></li>
+                    <li><a href="#contact" class="nav-link">Aloqa</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-box">
+                    <span id="search-btn"></span>
+                </div>
+                
+                <div class="auth-buttons">
+                    <button id="login-btn" class="btn-outline">Kirish</button>
+                    <button id="register-btn" class="btn-primary">Ro'yxatdan o'tish</button>
+                </div>
+                
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                
+                <div class="user-profile hidden">
+                    <img src="https://via.placeholder.com/40" alt="User">
+                    <span class="username">Foydalanuvchi</span>
+                </div>
+            </div>
+            
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Kirish/Ro'yxatdan o'tish modallari -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Kirish</button>
+                <button class="tab-btn" data-tab="register">Ro'yxatdan o'tish</button>
+            </div>
+            
+            <form id="login-form" class="auth-form active">
+                <h3>Hisobingizga kiring</h3>
+                <div class="form-group">
+                    <label for="login-email">Elektron pochta</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Parol</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn-primary">Kirish</button>
+            </form>
+            
+            <form id="register-form" class="auth-form">
+                <h3>Yangi hisob yarating</h3>
+                <div class="form-group">
+                    <label for="register-name">Ism</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Elektron pochta</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-phone">Telefon raqam</label>
+                    <input type="tel" id="register-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Parol</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm">Parolni tasdiqlang</label>
+                    <input type="password" id="register-confirm" required>
+                </div>
+                <button type="submit" class="btn-primary">Ro'yxatdan o'tish</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hero qismi -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Mazali Taomlar Sizni Kutmoqda</h1>
+                <p>O'zbek va jahon oshxonalarining eng yaxshi taomlari</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" id="order-now">Hozir Buyurtma Berish</button>
+                    <button class="btn-outline" id="view-menu">Menyuni Ko'rish</button>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Restoran taomlari">
+            </div>
+        </div>
+    </section>
+
+    <!-- Qidiruv tizimi -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <h2>Sevimli Taomingizni Toping</h2>
+                <div class="search-bar">
+                    <input type="text" id="main-search" placeholder="Taom nomi, tarkibi yoki kategoriya bo'yicha qidiring...">
+                    <button id="main-search-btn"><i class="fas fa-search"></i> Qidirish</button>
+                </div>
+                
+                <div class="search-filters">
+                    <button class="filter-btn active" data-category="all">Hammasi</button>
+                    <button class="filter-btn" data-category="osh">Osh</button>
+                    <button class="filter-btn" data-category="kabob">Kabob</button>
+                    <button class="filter-btn" data-category="salad">Salat</button>
+                    <button class="filter-btn" data-category="shoʻrva">Shoʻrva</button>
+                    <button class="filter-btn" data-category="desert">Desert</button>
+                    <button class="filter-btn" data-category="ichimlik">Ichimlik</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mahsulotlar bo'limi -->
+    <section id="menu" class="products">
+        <div class="container">
+            <h2 class="section-title">Menyumiz</h2>
+            <p class="section-subtitle">Har qanday didga mos taomlar</p>
+            
+            <div class="categories">
+                <div class="category active" data-category="all">
+                    <i class="fas fa-utensils"></i>
+                    <span>Barchasi</span>
+                </div>
+                <div class="category" data-category="osh">
+                    <i class="fas fa-bowl-food"></i>
+                    <span>Osh</span>
+                </div>
+                <div class="category" data-category="kabob">
+                    <i class="fas fa-drumstick-bite"></i>
+                    <span>Kabob</span>
+                </div>
+                <div class="category" data-category="salad">
+                    <i class="fas fa-leaf"></i>
+                    <span>Salat</span>
+                </div>
+                <div class="category" data-category="shoʻrva">
+                    <i class="fas fa-bowl-rice"></i>
+                    <span>Shoʻrva</span>
+                </div>
+                <div class="category" data-category="desert">
+                    <i class="fas fa-ice-cream"></i>
+                    <span>Desert</span>
+                </div>
+                <div class="category" data-category="ichimlik">
+                    <i class="fas fa-wine-glass-alt"></i>
+                    <span>Ichimlik</span>
+                </div>
+            </div>
+            
+            <div class="products-grid" id="products-container">
+                <!-- Mahsulotlar JavaScript orqali yuklanadi -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Mahsulot buyurtma qilish modali -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content product-modal">
+            <span class="close-modal">&times;</span>
+            <div class="product-modal-content">
+                <!-- Mahsulot ma'lumotlari JavaScript orqali yuklanadi -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bron qilish bo'limi -->
+    <section id="reservation" class="reservation">
+        <div class="container">
+            <h2 class="section-title">Stol Bron Qilish</h2>
+            <p class="section-subtitle">Xona ajratish uchun formani to'ldiring</p>
+            
+            <div class="reservation-content">
+                <div class="reservation-image">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Restoran interyeri">
+                </div>
+                
+                <form id="reservation-form" class="reservation-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reservation-name">Ism</label>
+                            <input type="text" id="reservation-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservation-phone">Telefon</label>
+                            <input type="tel" id="reservation-phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reservation-date">Sana</label>
+                            <input type="date" id="reservation-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservation-time">Vaqt</label>
+                            <input type="time" id="reservation-time" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reservation-guests">Mehmonlar soni</label>
+                            <select id="reservation-guests" required>
+                                <option value="1">1 kishi</option>
+                                <option value="2">2 kishi</option>
+                                <option value="3">3 kishi</option>
+                                <option value="4">4 kishi</option>
+                                <option value="5">5 kishi</option>
+                                <option value="6">6 kishi</option>
+                                <option value="7">7+ kishi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservation-occasion">Tadbir turi</label>
+                            <select id="reservation-occasion">
+                                <option value="umumiy">Umumiy</option>
+                                <option value="tug'ilgan kun">Tug'ilgan kun</option>
+                                <option value="nikoh">Nikoh</option>
+                                <option value="ish tushlik">Ish tushlik</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reservation-notes">Qo'shimcha eslatmalar</label>
+                        <textarea id="reservation-notes" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Bron Qilish</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Savat modali -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content cart-modal">
+            <span class="close-modal">&times;</span>
+            <h2>Savat</h2>
+            <div class="cart-items" id="cart-items">
+                <!-- Savatdagi mahsulotlar JavaScript orqali yuklanadi -->
+            </div>
+            <div class="cart-total">
+                <h3>Jami: <span id="cart-total-price">0</span> so'm</h3>
+            </div>
+            <div class="cart-actions">
+                <button class="btn-outline" id="clear-cart">Savatni tozalash</button>
+                <button class="btn-primary" id="checkout">Buyurtma berish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biz haqimizda bo'limi -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Biz Haqimizda</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>10 Yillik Tajriba</h3>
+                    <p>Biz 10 yildan ortiq vaqt davomida mijozlarimizga eng yaxshi taomlarni taqdim etib kelmoqdamiz. An'anaviy oshxona san'atini zamonaviy uslubda birlashtirib, har bir mehmonimizga yaxshi esda qolarli tajriba yaratamiz.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-utensils"></i>
+                            <h4>100+ Taom</h4>
+                            <p>Keng qamrovli menyu</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <h4>Eng Yaxshi Restoran</h4>
+                            <p>2023 yil mukofoti</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-users"></i>
+                            <h4>5000+ Mijoz</h4>
+                            <p>Mamnun mijozlar</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Restoran oshxonasi">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot -->
+<div class="chatbot-widget">
+    <div class="chatbot-toggle">
+        <i class="fas fa-robot"></i>
+    </div>
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <h3>Restaurant Yordamchi</h3>
+            <span class="chatbot-close">&times;</span>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    Salom! Men Oshxona restoranining virtual yordamchisiman. Sizga qanday yordam bera olaman?
+                </div>
+                <div class="message-time">12:00</div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Savolingizni yozing...">
+            <button id="chatbot-send">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+ <!-- Restoran Tafsilotlari -->
+<section class="restaurant-details">
+    <div class="container">
+        <h2 class="section-title">Restoran Haqida Batafsil</h2>
+        
+        <div class="details-tabs">
+            <button class="detail-tab active" data-tab="history">Tarix</button>
+            <button class="detail-tab" data-tab="chefs">Oshpazlar</button>
+            <button class="detail-tab" data-tab="ingredients">Ingredientlar</button>
+            <button class="detail-tab" data-tab="awards">Mukofotlar</button>
+        </div>
+        
+        <div class="details-content">
+            <div class="detail-pane active" id="history-pane">
+                <div class="detail-text">
+                    <h3>10 Yillik Tajriba</h3>
+                    <p>Oshxona restorani 2013 yilda ochilgan bo'lib, o'zbek va jahon oshxona an'analarini uyg'unlashtirgan holda xizmat ko'rsatmoqda.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> 2013 - Restoran ochildi</li>
+                        <li><i class="fas fa-check"></i> 2015 - "Yilning eng yaxshi restorani" mukofoti</li>
+                        <li><i class="fas fa-check"></i> 2018 - Xalqaro oshpazlar jamoasi qo'shildi</li>
+                        <li><i class="fas fa-check"></i> 2020 - Yangi filial ochildi</li>
+                        <li><i class="fas fa-check"></i> 2023 - Mobil ilova ishga tushirildi</li>
+                    </ul>
+                </div>
+                <div class="detail-image"></div>
+            </div>
+            
+            <div class="detail-pane" id="chefs-pane">
+                <div class="chefs-grid">
+                    <div class="chef-card">
+                        <div class="chef-image">
+                            <img src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="Bosh oshpaz">
+                        </div>
+                        <div class="chef-info">
+                            <h4>Shavkat Ismoilov</h4>
+                            <span class="chef-role">Bosh Oshpaz</span>
+                            <p>25 yillik tajribaga ega. Turkiya va Italiyada malaka oshirgan.</p>
+                            <div class="chef-specialty">
+                                <strong>Ixtisosligi:</strong> An'anaviy osh va kaboblar
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chef-card">
+                        <div class="chef-image">
+                            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1315&q=80" alt="Desert oshpazi">
+                        </div>
+                        <div class="chef-info">
+                            <h4>Dilnoza Xasanova</h4>
+                            <span class="chef-role">Desert Oshpazi</span>
+                            <p>Fransiyada shirinliklar bo'yicha tahsil olgan.</p>
+                            <div class="chef-specialty">
+                                <strong>Ixtisosligi:</strong> Sharq va G'arb desertlari
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chef-card">
+                        <div class="chef-image">
+                            <img src="https://images.unsplash.com/photo-1595475038784-bbe4390d224d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Sous oshpazi">
+                        </div>
+                        <div class="chef-info">
+                            <h4>Javohir Rahimov</h4>
+                            <span class="chef-role">Sous va Ziravorlar Mutaxassisi</span>
+                            <p>Hindiston va Taylandda ziravorlar bo'yicha tajriba.</p>
+                            <div class="chef-specialty">
+                                <strong>Ixtisosligi:</strong> Maxsus souslar va ziravorlar
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detail-pane" id="ingredients-pane">
+                <div class="ingredients-content">
+                    <div class="ingredient-info">
+                        <h3>Eng Sifatli Ingredientlar</h3>
+                        <p>Biz faqat sertifikatlangan va tabiiy ingredientlardan foydalanamiz:</p>
+                        
+                        <div class="ingredient-list">
+                            <div class="ingredient-item">
+                                <i class="fas fa-seedling"></i>
+                                <div>
+                                    <h4>Organik Sabzavotlar</h4>
+                                    <p>Mahalliy fermerlardan sotib olingan</p>
+                                </div>
+                            </div>
+                            <div class="ingredient-item">
+                                <i class="fas fa-drumstick-bite"></i>
+                                <div>
+                                    <h4>Tabiiy Go'sht</h4>
+                                    <p>GMO va gormonsiz go'sht mahsulotlari</p>
+                                </div>
+                            </div>
+                            <div class="ingredient-item">
+                                <i class="fas fa-fish"></i>
+                                <div>
+                                    <h4>Dengiz Mahsulotlari</h4>
+                                    <p>Kunlik yangi baliqlar</p>
+                                </div>
+                            </div>
+                            <div class="ingredient-item">
+                                <i class="fas fa-wheat-alt"></i>
+                                <div>
+                                    <h4>Organik Un</h4>
+                                    <p>O'zbekistonning eng yaxshi unidan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ingredient-image">
+                        <img src="https://images.unsplash.com/photo-1564759298141-cef86f51d4d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Ingredientlar">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detail-pane" id="awards-pane">
+                <div class="awards-content">
+                    <h3>Bizning Mukofot va Sertifikatlar</h3>
+                    <div class="awards-grid">
+                        <div class="award-card">
+                            <div class="award-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h4>Yilning Eng Yaxshi Restorani 2020</h4>
+                            <p>O'zbekiston Restoran Assotsiatsiyasi</p>
+                        </div>
+                        <div class="award-card">
+                            <div class="award-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h4>5 Yulduzli Xizmat Sertifikati</h4>
+                            <p>Xalqaro Turizm Tashkiloti</p>
+                        </div>
+                        <div class="award-card">
+                            <div class="award-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h4>Eng Sifatli Taom 2022</h4>
+                            <p>Toshkent Gastronomiya Festivali</p>
+                        </div>
+                        <div class="award-card">
+                            <div class="award-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4>Mijozlar Tanlovi 2023</h4>
+                            <p>Google Reviews 4.9/5.0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Aloqa bo'limi -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Biz bilan Aloqa</h2>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Manzil</h4>
+                            <p>Toshkent shahar, Yunusobod tumani</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefon</h4>
+                            <p>+998 90 123 45 67</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@oshxona-restoran.uz</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Ish vaqti</h4>
+                            <p>Dushanba - Yakshanba: 9:00 - 23:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="contact-name">Ism</label>
+                            <input type="text" id="contact-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-subject">Mavzu</label>
+                            <input type="text" id="contact-subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-message">Xabar</label>
+                            <textarea id="contact-message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Xabar Yuborish</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <h2>Oshxona</h2>
+                        <span>Restoran</span>
+                    </div>
+                    <p>Eng yaxshi taomlar va ajoyib xizmat</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Tez Havolalar</h3>
+                    <ul>
+                        <li><a href="#home">Bosh Sahifa</a></li>
+                        <li><a href="#menu">Menyu</a></li>
+                        <li><a href="#about">Biz Haqimizda</a></li>
+                        <li><a href="#reservation">Bron Qilish</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Kategoriyalar</h3>
+                    <ul>
+                        <li><a href="#" data-category="osh">Osh</a></li>
+                        <li><a href="#" data-category="kabob">Kabob</a></li>
+                        <li><a href="#" data-category="salad">Salat</a></li>
+                        <li><a href="#" data-category="shoʻrva">Shoʻrva</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Yangiliklar</h3>
+                    <p>Yangiliklar va aksiyalardan xabardor bo'lish uchun obuna bo'ling</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Email manzilingiz">
+                        <button class="btn-primary">Obuna bo'lish</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Oshxona Restoran. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
